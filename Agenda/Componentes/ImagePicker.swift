@@ -24,6 +24,7 @@
         var delegate:ImagePickerFotoSelecionada?
         
         // MARK: - Métodos
+
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
             let foto = info[UIImagePickerControllerOriginalImage] as! UIImage

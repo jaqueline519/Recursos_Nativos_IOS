@@ -11,6 +11,10 @@ import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    enum TipoDeShortcut: String {
+        case cadastrarAluno = "CadastrarAluno"
+    }
 
     var window: UIWindow?
 
@@ -18,6 +22,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
+    }
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        
+        if let tipo = TipoDeShortcut(rawValue: shortcutItem.type){
+            switch tipo {
+            case .cadastrarAluno:
+                
+                let cadastrarAluno = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "cadastrar")
+                let navigation = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController
+                navigation?.pushViewController(cadastrarAluno, animated: true)
+                
+                break
+            }
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
